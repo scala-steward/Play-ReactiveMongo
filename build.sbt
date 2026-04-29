@@ -10,6 +10,8 @@ val specs2Dependencies = Def.setting[Seq[ModuleID]] {
   val specsVersion = {
     if (scalaBinaryVersion.value startsWith "3") {
       "5.5.3"
+    } else if (scalaBinaryVersion.value == "2.13") {
+      "4.20.9"
     } else {
       "4.10.6"
     }
