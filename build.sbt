@@ -137,6 +137,13 @@ lazy val reactivemongo = Project("Play2-ReactiveMongo", file(".")).settings(
         "ch.qos.logback" % "logback-classic" % "1.2.13" % Test
       ) ++ additionalDeps ++ playDependencies.value ++ specs2Dependencies.value ++ silencer
     },
+    dependencyOverrides ++= {
+      if (scalaBinaryVersion.value == "2.13" && Common.playVer.value.startsWith("2.")) {
+        Seq("org.scala-lang.modules" %% "scala-xml" % "1.3.1")
+      } else {
+        Seq.empty
+      }
+    },
     mimaBinaryIssueFilters ++= Seq.empty
   )
 )
